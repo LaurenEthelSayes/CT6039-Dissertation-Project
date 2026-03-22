@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cortex Quest - Round 3 Transition</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="scanlines"></div>
+
+  <main class="panel">
+    <div class="game-topbar">
+      <div class="status-pill">ROUND 2 COMPLETE</div>
+      <div class="status-pill">THREAT LEVEL: CRITICAL</div>
+      <div class="status-pill">SCORE: <span id="scoreDisplay">0</span></div>
+    </div>
+
+    <h1>ROUND 3</h1>
+    <p class="tagline">FINAL PHASE: COGNITIVE OVERLOAD</p>
+
+    <div class="briefing-box">
+      <p>
+        Escalation threshold reached.
+      </p>
+
+      <p>
+        The next phase introduces the highest-pressure scenarios in the simulation. Cues may
+        conflict, prompts may appear more legitimate, and time to respond will be reduced further.
+      </p>
+
+      <p>
+        You should now expect:
+      </p>
+
+      <ul class="action-list">
+        <li>multiple persuasive cues at once</li>
+        <li>greater ambiguity and lower certainty</li>
+        <li>stronger pressure to act quickly</li>
+        <li>more convincing messages designed to influence judgement</li>
+      </ul>
+
+      <p>
+        This is the final round. Maintain control, question familiarity, and avoid reacting
+        automatically. The remaining scenarios are designed to test resilience under maximum pressure.
+      </p>
+    </div>
+
+    <div class="button-row">
+      <button class="start-btn" onclick="window.location.href='round2scenario2.html'">BACK</button>
+      <button class="start-btn" onclick="window.location.href='round3scenario1.html'">BEGIN ROUND 3</button>
+    </div>
+  </main>
+
+  <script>
+    window.onload = function () {
+      const savedScore = sessionStorage.getItem("cq_score");
+      document.getElementById("scoreDisplay").textContent = savedScore !== null ? savedScore : 0;
+    };
+  </script>
+</body>
+</html>

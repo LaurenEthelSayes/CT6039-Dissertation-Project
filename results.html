@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cortex Quest - Results</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="scanlines"></div>
+
+  <main class="panel">
+    <div class="game-topbar">
+      <div class="status-pill">SIMULATION COMPLETE</div>
+      <div class="status-pill">RESULTS READY</div>
+      <div class="status-pill">FINAL SCORE: <span id="finalScoreTop">0</span></div>
+    </div>
+
+    <h1>RESULTS</h1>
+    <p class="tagline">BEHAVIOURAL RESPONSE SUMMARY</p>
+
+    <div class="results-box">
+      <div class="results-score-block">
+        <p class="results-label">FINAL SCORE</p>
+        <div class="results-score" id="finalScoreMain">0</div>
+      </div>
+
+      <div class="results-summary-block">
+        <p class="results-label">PERFORMANCE BAND</p>
+        <p class="results-band" id="performanceBand">ANALYSING...</p>
+      </div>
+
+      <div class="results-summary-block">
+        <p class="results-label">INTERPRETATION</p>
+        <p class="results-text" id="resultsInterpretation">
+          Your responses are being processed.
+        </p>
+      </div>
+    </div>
+
+    <div class="briefing-box">
+      <p>
+        This summary reflects how your decisions changed under escalating cyber pressure.
+        Higher-pressure scenarios were designed to test judgement under urgency, authority,
+        reward framing, and consequence-based manipulation.
+      </p>
+
+      <p>
+        Your next step is to complete the post-simulation questionnaire so the study can compare
+        your performance with your own reflections on difficulty, pressure, and confidence.
+      </p>
+    </div>
+
+    <div class="button-row">
+      <button class="start-btn" onclick="window.location.href='postsurvey.html'">CONTINUE TO POST-SURVEY</button>
+    </div>
+  </main>
+
+  <script>
+    function getPerformanceBand(score) {
+      if (score >= 50) return "HIGH RESISTANCE";
+      if (score >= 30) return "MODERATE RESISTANCE";
+      if (score >= 10) return "VARIABLE RESISTANCE";
+      return "HIGH VULNERABILITY";
+    }
+
+    function getInterpretation(score) {
+      if (score >= 50) {
+        return "You showed strong resistance to manipulative cyber cues across the simulation. Your decisions remained relatively cautious even as pressure increased.";
+      }
+      if (score >= 30) {
+        return "You showed moderate resistance overall, but some scenarios appear to have affected your judgement under pressure. This suggests partial resilience with some vulnerability to persuasive cues.";
+      }
+      if (score >= 10) {
+        return "Your responses suggest inconsistent resistance under pressure. More difficult scenarios likely reduced certainty and increased vulnerability to urgency, authority, or reward-based prompts.";
+      }
+      return "Your responses suggest high vulnerability under escalating cyber pressure. The final scenarios appear to have significantly affected judgement, indicating reduced resilience when manipulative cues intensified.";
+    }
+
+    window.onload = function () {
+      const savedScore = sessionStorage.getItem("cq_score");
+      const finalScore = savedScore !== null ? parseInt(savedScore, 10) : 0;
+
+      document.getElementById("finalScoreTop").textContent = finalScore;
+      document.getElementById("finalScoreMain").textContent = finalScore;
+      document.getElementById("performanceBand").textContent = getPerformanceBand(finalScore);
+      document.getElementById("resultsInterpretation").textContent = getInterpretation(finalScore);
+    };
+  </script>
+</body>
+</html>

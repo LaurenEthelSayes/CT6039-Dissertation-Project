@@ -564,4 +564,48 @@ h1 {
     font-size: 1.4rem;
   }
 }
+.results-box {
+  max-width: 760px;
+  margin-bottom: 28px;
+  display: grid;
+  gap: 18px;
+}
+
+.results-score-block,
+.results-summary-block {
+  border: 2px solid #00ff88;
+  background: rgba(0, 20, 10, 0.78);
+  padding: 22px;
+  box-shadow: 0 0 12px rgba(0, 255, 136, 0.12);
+}
+
+.results-label {
+  margin: 0 0 10px;
+  color: #8affc1;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+}
+
+.results-score {
+  font-size: 4rem;
+  font-weight: bold;
+  color: #00ff88;
+  text-shadow:
+    0 0 8px rgba(0, 255, 136, 0.75),
+    0 0 20px rgba(0, 255, 136, 0.3);
+}
+
+.results-band {
+  margin: 0;
+  font-size: 1.4rem;
+  color: #00ff88;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.results-text {
+  margin: 0;
+  color: #c8ffe3;
+  line-height: 1.8;
+}
 }

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cortex Quest - Round 2 Scenario 2</title>
+  <title>Cortex Quest - Round 3 Scenario 1</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -11,27 +11,27 @@
 
   <main class="panel">
     <div class="game-topbar">
-      <div class="status-pill">ROUND 2 OF 3</div>
-      <div class="status-pill">SCENARIO 4 OF 6</div>
-      <div class="status-pill">THREAT LEVEL: ELEVATED</div>
+      <div class="status-pill">ROUND 3 OF 3</div>
+      <div class="status-pill">SCENARIO 5 OF 6</div>
+      <div class="status-pill">THREAT LEVEL: CRITICAL</div>
       <div class="status-pill">SCORE: <span id="scoreDisplay">0</span></div>
     </div>
 
-    <h1>ROUND 2</h1>
-    <p class="tagline">SCENARIO 4: DELIVERY PAYMENT ISSUE</p>
+    <h1>ROUND 3</h1>
+    <p class="tagline">SCENARIO 5: SECURITY POLICY CONFIRMATION</p>
 
     <div class="progress-section">
       <div class="progress-label-row">
         <span>MISSION PROGRESS</span>
-        <span>4 / 6</span>
+        <span>5 / 6</span>
       </div>
       <div class="progress-bar">
-        <div class="progress-fill" style="width: 66.66%;"></div>
+        <div class="progress-fill" style="width: 83.33%;"></div>
       </div>
     </div>
 
     <div class="timer-section timer-section-loud">
-      <div class="timer-main-display" id="timerText">13s</div>
+      <div class="timer-main-display" id="timerText">10s</div>
       <div class="timer-label-row">
         <span>DECISION TIMER</span>
         <span id="timerStatus">STABLE</span>
@@ -44,50 +44,50 @@
     <div class="scenario-card">
       <div class="scenario-header">
         <div>
-          <p class="scenario-from">FROM: delivery-support@parcel-update-centre.com</p>
-          <h2 class="scenario-title">Delivery Delayed Due to Payment Issue</h2>
+          <p class="scenario-from">FROM: compliance-notice@secure-policy-review.com</p>
+          <h2 class="scenario-title">Mandatory Security Policy Confirmation</h2>
         </div>
-        <div class="scenario-badge">ACTION</div>
+        <div class="scenario-badge">MANDATORY</div>
       </div>
 
       <p class="scenario-message">
-        Your parcel is currently on hold due to an unresolved delivery processing charge.
-        A small payment confirmation is required before dispatch can continue. Failure to
-        respond may result in return to sender.
+        Updated access and account protection rules now require immediate acknowledgement.
+        Users who do not confirm compliance may experience restricted platform access while
+        policy alignment is reviewed.
       </p>
 
-      <button class="fake-link-btn" type="button">RESOLVE DELIVERY</button>
+      <button class="fake-link-btn" type="button">CONFIRM POLICY</button>
 
       <p class="scenario-note">
-        Response required soon to avoid cancellation of scheduled delivery.
+        This request appears linked to account security, continuity of access, and policy compliance.
       </p>
     </div>
 
     <div class="action-grid">
-      <button class="action-btn" type="button" onclick="submitScenario('Proceed', 'No', 'urgency_consequence')">PROCEED</button>
-      <button class="action-btn" type="button" onclick="submitScenario('Cancel', 'Yes', 'urgency_consequence')">CANCEL</button>
-      <button class="action-btn" type="button" onclick="submitScenario('Report', 'Yes', 'urgency_consequence')">REPORT</button>
-      <button class="action-btn" type="button" onclick="submitScenario('Investigate', 'Yes', 'urgency_consequence')">INVESTIGATE</button>
+      <button class="action-btn" type="button" onclick="submitScenario('Proceed', 'No', 'authority_urgency_consequence')">PROCEED</button>
+      <button class="action-btn" type="button" onclick="submitScenario('Cancel', 'Yes', 'authority_urgency_consequence')">CANCEL</button>
+      <button class="action-btn" type="button" onclick="submitScenario('Report', 'Yes', 'authority_urgency_consequence')">REPORT</button>
+      <button class="action-btn" type="button" onclick="submitScenario('Investigate', 'Yes', 'authority_urgency_consequence')">INVESTIGATE</button>
     </div>
 
     <p class="warning-text" id="scenarioMessage"></p>
 
     <form id="scenarioForm" action="save_scenario.php" method="POST" style="display: none;">
-      <input type="hidden" name="round_number" value="2">
-      <input type="hidden" name="scenario_number" value="4">
+      <input type="hidden" name="round_number" value="3">
+      <input type="hidden" name="scenario_number" value="5">
       <input type="hidden" name="cue_type" id="cueType">
       <input type="hidden" name="user_choice" id="userChoice">
       <input type="hidden" name="is_correct" id="isCorrect">
       <input type="hidden" name="response_time" id="responseTime">
       <input type="hidden" name="score_after_action" id="scoreAfterAction">
-      <input type="hidden" name="next_page" value="round3transition.html">
+      <input type="hidden" name="next_page" value="round3scenario2.html">
     </form>
   </main>
 
   <script>
     let score = 0;
-    let timeLeft = 13;
-    let totalTime = 13;
+    let timeLeft = 10;
+    let totalTime = 10;
     let timerInterval;
     let scenarioSubmitted = false;
 
@@ -106,12 +106,12 @@
         const percentage = (timeLeft / totalTime) * 100;
         timerFill.style.width = percentage + "%";
 
-        if (timeLeft <= 7) {
+        if (timeLeft <= 6) {
           timerStatus.textContent = "ELEVATED";
           timerText.style.color = "#b6ffcf";
         }
 
-        if (timeLeft <= 4) {
+        if (timeLeft <= 3) {
           timerStatus.textContent = "CRITICAL";
           timerText.style.color = "#ffffff";
           timerText.style.textShadow = "0 0 10px rgba(255,255,255,0.95), 0 0 22px rgba(0,255,136,0.55)";
@@ -120,7 +120,7 @@
 
         if (timeLeft <= 0) {
           clearInterval(timerInterval);
-          submitScenario("No Response", "No", "urgency_consequence");
+          submitScenario("No Response", "No", "authority_urgency_consequence");
         }
       }, 1000);
     }
