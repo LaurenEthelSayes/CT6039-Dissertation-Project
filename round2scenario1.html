@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cortex Quest - Round 2 Scenario 1</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="scanlines"></div>
+
+  <main class="panel">
+    <div class="game-topbar">
+      <div class="status-pill">ROUND 2 OF 3</div>
+      <div class="status-pill">SCENARIO 3 OF 6</div>
+      <div class="status-pill">THREAT LEVEL: ELEVATED</div>
+      <div class="status-pill">SCORE: <span id="scoreDisplay">0</span></div>
+    </div>
+
+    <h1>ROUND 2</h1>
+    <p class="tagline">SCENARIO 3: ACCOUNT ACCESS VERIFICATION</p>
+
+    <div class="progress-section">
+      <div class="progress-label-row">
+        <span>MISSION PROGRESS</span>
+        <span>3 / 6</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: 50%;"></div>
+      </div>
+    </div>
+
+    <div class="timer-section timer-section-loud">
+      <div class="timer-main-display" id="timerText">15s</div>
+      <div class="timer-label-row">
+        <span>DECISION TIMER</span>
+        <span id="timerStatus">STABLE</span>
+      </div>
+      <div class="timer-bar">
+        <div class="timer-fill" id="timerFill"></div>
+      </div>
+    </div>
+
+    <div class="scenario-card">
+      <div class="scenario-header">
+        <div>
+          <p class="scenario-from">FROM: account-services@secure-access-support.com</p>
+          <h2 class="scenario-title">Access Confirmation Required</h2>
+        </div>
+        <div class="scenario-badge">VERIFY</div>
+      </div>
+
+      <p class="scenario-message">
+        A recent login attempt has triggered a routine access confirmation check. To avoid temporary
+        interruption to your account, please review and confirm your account access status immediately.
+      </p>
+
+      <button class="fake-link-btn" type="button">CONFIRM ACCESS</button>
+
+      <p class="scenario-note">
+        Delay may result in limited access until your account activity is reviewed.
+      </p>
+    </div>
+
+    <div class="action-grid">
+      <button class="action-btn" type="button" onclick="submitScenario('Proceed', 'No', 'authority_urgency')">PROCEED</button>
+      <button class="action-btn" type="button" onclick="submitScenario('Cancel', 'Yes', 'authority_urgency')">CANCEL</button>
+      <button class="action-btn" type="button" onclick="submitScenario('Report', 'Yes', 'authority_urgency')">REPORT</button>
+      <button class="action-btn" type="button" onclick="submitScenario('Investigate', 'Yes', 'authority_urgency')">INVESTIGATE</button>
+    </div>
+
+    <p class="warning-text" id="scenarioMessage"></p>
+
+    <form id="scenarioForm" action="save_scenario.php" method="POST" style="display: none;">
+      <input type="hidden" name="round_number" value="2">
+      <input type="hidden" name="scenario_number" value="3">
+      <input type="hidden" name="cue_type" id="cueType">
+      <input type="hidden" name="user_choice" id="userChoice">
+      <input type="hidden" name="is_correct" id="isCorrect">
+      <input type="hidden" name="response_time" id="responseTime">
+      <input type="hidden" name="score_after_action" id="scoreAfterAction">
+      <input type="hidden" name="next_page" value="round2scenario2.html">
+    </form>
+  </main>
+
+  <script>
+    let score = 0;
+    let timeLeft = 15;
+    let totalTime = 15;
+    let timerInterval;
+    let scenarioSubmitted = false;
+
+    function startScenarioTimer() {
+      const timerText = document.getElementById("timerText");
+      const timerFill = document.getElementById("timerFill");
+      const timerStatus = document.getElementById("timerStatus");
+
+      timerText.textContent = timeLeft + "s";
+      timerFill.style.width = "100%";
+
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        timerText.textContent = timeLeft + "s";
+
+        const percentage = (timeLeft / totalTime) * 100;
+        timerFill.style.width = percentage + "%";
+
+        if (timeLeft <= 8) {
+          timerStatus.textContent = "ELEVATED";
+          timerText.style.color = "#b6ffcf";
+        }
+
+        if (timeLeft <= 4) {
+          timerStatus.textContent = "CRITICAL";
+          timerText.style.color = "#ffffff";
+          timerText.style.textShadow = "0 0 10px rgba(255,255,255,0.95), 0 0 22px rgba(0,255,136,0.55)";
+          timerFill.style.background = "#8affc1";
+        }
+
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          submitScenario("No Response", "No", "authority_urgency");
+        }
+      }, 1000);
+    }
+
+    function submitScenario(choice, isCorrect, cueType) {
+      if (scenarioSubmitted) return;
+      scenarioSubmitted = true;
+
+      clearInterval(timerInterval);
+
+      const responseTimeValue = totalTime - timeLeft;
+
+      if (isCorrect === "Yes") {
+        score += 10;
+      } else {
+        score -= 10;
+      }
+
+      sessionStorage.setItem("cq_score", score);
+
+      document.getElementById("userChoice").value = choice;
+      document.getElementById("isCorrect").value = isCorrect;
+      document.getElementById("cueType").value = cueType;
+      document.getElementById("responseTime").value = responseTimeValue;
+      document.getElementById("scoreAfterAction").value = score;
+
+      document.getElementById("scenarioForm").submit();
+    }
+
+    window.onload = function () {
+      const savedScore = sessionStorage.getItem("cq_score");
+      if (savedScore !== null) {
+        score = parseInt(savedScore, 10);
+      } else {
+        score = 0;
+        sessionStorage.setItem("cq_score", score);
+      }
+
+      document.getElementById("scoreDisplay").textContent = score;
+      startScenarioTimer();
+    };
+  </script>
+</body>
+</html>

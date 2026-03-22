@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cortex Quest - Consent</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="scanlines"></div>
+
+  <main class="panel">
+    <div class="status-row">
+      <div class="status-pill">ETHICS AND CONSENT</div>
+      <div class="status-pill">REQUIRED TO CONTINUE</div>
+    </div>
+
+    <h1>CONSENT</h1>
+    <p class="tagline">PLEASE READ BEFORE ENTERING THE SIMULATION</p>
+
+    <div class="consent-box">
+      <p>
+        This study complies with the University of Gloucestershire’s Research Ethical Policy
+        and the British Psychological Society Code of Human Research Ethics (2021).
+      </p>
+
+      <p>
+        Cortex Quest is a gamified cyber-security simulation designed to collect anonymous
+        behavioural data, including user choices and response times. No personal or sensitive
+        data will be collected.
+      </p>
+
+      <p>
+        Participation is entirely voluntary. By continuing, you confirm that you understand
+        the nature of the study and consent to take part. You may withdraw at any time before
+        completing the simulation.
+      </p>
+
+      <p>
+        All data will be stored securely, used solely for academic research purposes, and
+        disposed of securely after the project is complete. The simulation does not involve
+        deception or known significant risk.
+      </p>
+    </div>
+
+    <label class="checkbox-row">
+      <input type="checkbox" id="consentCheck" />
+      <span>I have read the information above and I consent to take part in this study.</span>
+    </label>
+
+    <div class="button-row">
+      <button class="start-btn" onclick="window.location.href='index.html'">DECLINE</button>
+      <button class="start-btn" onclick="goToBriefing()">CONTINUE</button>
+    </div>
+
+    <p class="warning-text" id="consentMessage"></p>
+  </main>
+
+  <script src="script.js?v=2"></script>
+</body>
+</html>

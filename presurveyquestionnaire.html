@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cortex Quest - Pre-Survey Questionnaire</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="scanlines"></div>
+
+  <main class="panel">
+    <div class="status-row">
+      <div class="status-pill">PRE-SIMULATION QUESTIONNAIRE</div>
+      <div class="status-pill">10 QUESTIONS</div>
+    </div>
+
+    <h1>PRE-SURVEY</h1>
+    <p class="tagline">COMPLETE THIS BEFORE ENTERING THE SIMULATION</p>
+
+    <form class="questionnaire-form" action="save_presurvey.php" method="POST">
+      <div class="question-block">
+        <label for="age">1. What is your age group?</label>
+        <select id="age" name="age" required>
+          <option value="">Select an option</option>
+          <option>Under 18</option>
+          <option>18-24</option>
+          <option>25-34</option>
+          <option>35-44</option>
+          <option>45-54</option>
+          <option>55-64</option>
+          <option>65+</option>
+          <option>Prefer not to say</option>
+        </select>
+      </div>
+
+      <div class="question-block">
+        <label for="confidence">2. How confident would you say you are when using digital devices and online services?</label>
+        <select id="confidence" name="confidence" required>
+          <option value="">Select an option</option>
+          <option>Not confident at all</option>
+          <option>Slightly confident</option>
+          <option>Moderately confident</option>
+          <option>Very confident</option>
+          <option>Extremely confident</option>
+        </select>
+      </div>
+
+      <div class="question-block">
+        <label for="usage">3. How often do you use email, text messages, apps, or online accounts in everyday life?</label>
+        <select id="usage" name="usage" required>
+          <option value="">Select an option</option>
+          <option>Rarely</option>
+          <option>A few times a week</option>
+          <option>Once a day</option>
+          <option>Several times a day</option>
+          <option>Almost constantly</option>
+        </select>
+      </div>
+
+      <div class="question-block">
+        <label for="identify">4. How confident are you in identifying suspicious emails, messages, or prompts online?</label>
+        <select id="identify" name="identify" required>
+          <option value="">Select an option</option>
+          <option>Not confident at all</option>
+          <option>Slightly confident</option>
+          <option>Moderately confident</option>
+          <option>Very confident</option>
+          <option>Extremely confident</option>
+        </select>
+      </div>
+
+      <div class="question-block">
+        <label for="training">5. Have you ever received any cyber-security awareness training or guidance?</label>
+        <select id="training" name="training" required>
+          <option value="">Select an option</option>
+          <option>Yes, formal training</option>
+          <option>Yes, informal guidance</option>
+          <option>No</option>
+          <option>Unsure</option>
+        </select>
+      </div>
+
+      <div class="question-block">
+        <label for="pausecheck">6. How often do you pause and check whether a message, alert, or prompt might be suspicious before responding?</label>
+        <select id="pausecheck" name="pausecheck" required>
+          <option value="">Select an option</option>
+          <option>Never</option>
+          <option>Rarely</option>
+          <option>Sometimes</option>
+          <option>Often</option>
+          <option>Always</option>
+        </select>
+      </div>
+
+      <div class="question-block">
+        <label for="urgency">7. How likely are you to trust a message if it appears urgent or time-sensitive?</label>
+        <select id="urgency" name="urgency" required>
+          <option value="">Select an option</option>
+          <option>Very unlikely</option>
+          <option>Unlikely</option>
+          <option>Neutral</option>
+          <option>Likely</option>
+          <option>Very likely</option>
+        </select>
+      </div>
+
+      <div class="question-block">
+        <label for="authority">8. How likely are you to trust a message if it appears to come from an authority figure, company, or service you recognise?</label>
+        <select id="authority" name="authority" required>
+          <option value="">Select an option</option>
+          <option>Very unlikely</option>
+          <option>Unlikely</option>
+          <option>Neutral</option>
+          <option>Likely</option>
+          <option>Very likely</option>
+        </select>
+      </div>
+
+      <div class="question-block">
+        <label for="pressure">9. How confident are you in making good decisions when faced with pressure or limited time online?</label>
+        <select id="pressure" name="pressure" required>
+          <option value="">Select an option</option>
+          <option>Not confident at all</option>
+          <option>Slightly confident</option>
+          <option>Moderately confident</option>
+          <option>Very confident</option>
+          <option>Extremely confident</option>
+        </select>
+      </div>
+
+      <div class="question-block">
+        <label for="performance">10. Before taking part, how well do you think you will perform in this simulation?</label>
+        <select id="performance" name="performance" required>
+          <option value="">Select an option</option>
+          <option>Very poorly</option>
+          <option>Poorly</option>
+          <option>Average</option>
+          <option>Well</option>
+          <option>Very well</option>
+        </select>
+      </div>
+
+      <div class="button-row">
+        <button type="button" class="start-btn" onclick="window.location.href='consent.html'">BACK</button>
+        <button type="submit" class="start-btn">CONTINUE</button>
+      </div>
+    </form>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
