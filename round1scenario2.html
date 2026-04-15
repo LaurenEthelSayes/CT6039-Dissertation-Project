@@ -44,20 +44,19 @@
     <div class="scenario-card">
       <div class="scenario-header">
         <div>
-          <p class="scenario-from">FROM: rewards@member-benefits-mail.com</p>
-          <h2 class="scenario-title">Bonus Reward Available</h2>
+          <p class="scenario-from">FROM: rewards@glos.ac.uk</p>
+          <h2 class="scenario-title">Student Reward Available</h2>
         </div>
         <div class="scenario-badge">LIMITED</div>
       </div>
 
       <p class="scenario-message">
-        Congratulations. You have been selected as one of today’s active users and may now
-        claim a bonus member reward. This reward window is limited and may expire if no action
-        is taken immediately.
+        A student reward is available for your account as part of today’s active user benefits programme.
+        You may now verify and claim your reward through the university rewards system.
       </p>
 
       <p class="scenario-note">
-        Offer expires soon. Prompt may disappear if no action is taken.
+        Reward remains available during this session and can be accessed now.
       </p>
     </div>
 
@@ -66,8 +65,8 @@
     </p>
 
     <div class="action-grid">
-      <button class="action-btn" type="button" onclick="submitScenario('Claim Reward Now', 'No', 'reward')">CLAIM REWARD NOW</button>
-      <button class="action-btn" type="button" onclick="submitScenario('Report As Suspicious And Delete', 'Yes', 'reward')">REPORT AS SUSPICIOUS AND DELETE</button>
+      <button class="action-btn" type="button" onclick="submitScenario('Verify Reward', 'Yes', 'reward')">VERIFY REWARD</button>
+      <button class="action-btn" type="button" onclick="submitScenario('Ignore Message', 'No', 'reward')">IGNORE MESSAGE</button>
     </div>
 
     <form id="scenarioForm" action="save_scenario.php" method="POST" style="display: none;">
