@@ -9,43 +9,43 @@ if (!isset($_SESSION["participant_id"])) {
 $participant_id = $_SESSION["participant_id"];
 
 $age_group = $_POST["age"] ?? "";
-$digital_confidence = $_POST["confidence"] ?? "";
+$gender = $_POST["gender"] ?? "";
+$education_level = $_POST["education"] ?? "";
+$cyber_training = $_POST["training"] ?? "";
 $digital_usage = $_POST["usage"] ?? "";
 $suspicious_confidence = $_POST["identify"] ?? "";
-$cyber_training = $_POST["training"] ?? "";
-$pause_check = $_POST["pausecheck"] ?? "";
-$urgency_trust = $_POST["urgency"] ?? "";
-$authority_trust = $_POST["authority"] ?? "";
-$pressure_confidence = $_POST["pressure"] ?? "";
-$expected_performance = $_POST["performance"] ?? "";
+$qual1 = $_POST["qual1"] ?? "";
+$qual2 = $_POST["qual2"] ?? "";
+$qual3 = $_POST["qual3"] ?? "";
+$qual4 = $_POST["qual4"] ?? "";
 
 $stmt = $conn->prepare("INSERT INTO presurvey (
     participant_id,
     age_group,
-    digital_confidence,
+    gender,
+    education_level,
+    cyber_training,
     digital_usage,
     suspicious_confidence,
-    cyber_training,
-    pause_check,
-    urgency_trust,
-    authority_trust,
-    pressure_confidence,
-    expected_performance
+    qual1,
+    qual2,
+    qual3,
+    qual4
 ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 $stmt->bind_param(
     "sssssssssss",
     $participant_id,
     $age_group,
-    $digital_confidence,
+    $gender,
+    $education_level,
+    $cyber_training,
     $digital_usage,
     $suspicious_confidence,
-    $cyber_training,
-    $pause_check,
-    $urgency_trust,
-    $authority_trust,
-    $pressure_confidence,
-    $expected_performance
+    $qual1,
+    $qual2,
+    $qual3,
+    $qual4
 );
 
 $stmt->execute();

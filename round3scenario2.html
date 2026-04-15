@@ -3,22 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cortex Quest - Round 3 Scenario 2</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Cortex Quest - Scenario 3 Round 2</title>
+  <link rel="stylesheet" href="style.css?v=10" />
 </head>
 <body>
   <div class="scanlines"></div>
 
   <main class="panel">
     <div class="game-topbar">
-      <div class="status-pill">ROUND 3 OF 3</div>
-      <div class="status-pill">SCENARIO 6 OF 6</div>
+      <div class="status-pill">ROUND 2 OF 2</div>
+      <div class="status-pill">SCENARIO 3 OF 3</div>
       <div class="status-pill">THREAT LEVEL: CRITICAL</div>
       <div class="status-pill">SCORE: <span id="scoreDisplay">0</span></div>
     </div>
 
-    <h1>ROUND 3</h1>
-    <p class="tagline">SCENARIO 6: ACCOUNT RECOVERY ESCALATION</p>
+    <h1>ROUND 2</h1>
+    <p class="tagline">SCENARIO 3: ACCOUNT RECOVERY ESCALATION</p>
 
     <div class="progress-section">
       <div class="progress-label-row">
@@ -31,10 +31,10 @@
     </div>
 
     <div class="timer-section timer-section-loud">
-      <div class="timer-main-display" id="timerText">8s</div>
+      <div class="timer-main-display" id="timerText">14s</div>
       <div class="timer-label-row">
-        <span>DECISION TIMER</span>
-        <span id="timerStatus">STABLE</span>
+        <span>DECISION WINDOW</span>
+        <span id="timerStatus">HIGH LOAD</span>
       </div>
       <div class="timer-bar">
         <div class="timer-fill" id="timerFill"></div>
@@ -56,25 +56,25 @@
         account activity. This action cannot be reversed once recovery is finalised.
       </p>
 
-      <button class="fake-link-btn" type="button">CONFIRM RECOVERY</button>
-
       <p class="scenario-note">
-        Multiple pressure cues detected: urgency, loss framing, authority language, and forced action.
+        This request appears linked to account recovery, loss of access, and urgent account action.
       </p>
     </div>
 
+    <p class="warning-text" id="scenarioMessage">
+      Choose your first response under pressure.
+    </p>
+
     <div class="action-grid">
-      <button class="action-btn" type="button" onclick="submitScenario('Proceed', 'No', 'authority_urgency_loss')">PROCEED</button>
-      <button class="action-btn" type="button" onclick="submitScenario('Cancel', 'Yes', 'authority_urgency_loss')">CANCEL</button>
-      <button class="action-btn" type="button" onclick="submitScenario('Report', 'Yes', 'authority_urgency_loss')">REPORT</button>
-      <button class="action-btn" type="button" onclick="submitScenario('Investigate', 'Yes', 'authority_urgency_loss')">INVESTIGATE</button>
+      <button class="action-btn" type="button" onclick="submitScenario('Confirm Recovery Now', 'No', 'authority_urgency_loss', -10)">CONFIRM RECOVERY NOW</button>
+      <button class="action-btn" type="button" onclick="submitScenario('Delay And Review Later', 'No', 'authority_urgency_loss', -5)">DELAY AND REVIEW LATER</button>
+      <button class="action-btn" type="button" onclick="submitScenario('Report As Suspicious', 'Yes', 'authority_urgency_loss', 10)">REPORT AS SUSPICIOUS</button>
+      <button class="action-btn" type="button" onclick="submitScenario('Ignore For Now / Unsure', 'No', 'authority_urgency_loss', -10)">IGNORE FOR NOW / UNSURE</button>
     </div>
 
-    <p class="warning-text" id="scenarioMessage"></p>
-
     <form id="scenarioForm" action="save_scenario.php" method="POST" style="display: none;">
-      <input type="hidden" name="round_number" value="3">
-      <input type="hidden" name="scenario_number" value="6">
+      <input type="hidden" name="round_number" value="2">
+      <input type="hidden" name="scenario_number" value="3">
       <input type="hidden" name="cue_type" id="cueType">
       <input type="hidden" name="user_choice" id="userChoice">
       <input type="hidden" name="is_correct" id="isCorrect">
@@ -86,8 +86,8 @@
 
   <script>
     let score = 0;
-    let timeLeft = 8;
-    let totalTime = 8;
+    let timeLeft = 14;
+    let totalTime = 14;
     let timerInterval;
     let scenarioSubmitted = false;
 
@@ -95,6 +95,7 @@
       const timerText = document.getElementById("timerText");
       const timerFill = document.getElementById("timerFill");
       const timerStatus = document.getElementById("timerStatus");
+      const scenarioMessage = document.getElementById("scenarioMessage");
 
       timerText.textContent = timeLeft + "s";
       timerFill.style.width = "100%";
@@ -106,38 +107,35 @@
         const percentage = (timeLeft / totalTime) * 100;
         timerFill.style.width = percentage + "%";
 
-        if (timeLeft <= 5) {
+        if (timeLeft <= 8) {
           timerStatus.textContent = "ELEVATED";
           timerText.style.color = "#b6ffcf";
+          scenarioMessage.textContent = "Account recovery pressure increasing. Make a decision.";
         }
 
-        if (timeLeft <= 3) {
+        if (timeLeft <= 4) {
           timerStatus.textContent = "CRITICAL";
           timerText.style.color = "#ffffff";
           timerText.style.textShadow = "0 0 10px rgba(255,255,255,0.95), 0 0 22px rgba(0,255,136,0.55)";
           timerFill.style.background = "#8affc1";
+          scenarioMessage.textContent = "Final recovery warning. Immediate response required.";
         }
 
         if (timeLeft <= 0) {
           clearInterval(timerInterval);
-          submitScenario("No Response", "No", "authority_urgency_loss");
+          submitScenario("No Response", "No", "authority_urgency_loss", -10);
         }
       }, 1000);
     }
 
-    function submitScenario(choice, isCorrect, cueType) {
+    function submitScenario(choice, isCorrect, cueType, scoreChange) {
       if (scenarioSubmitted) return;
       scenarioSubmitted = true;
 
       clearInterval(timerInterval);
 
       const responseTimeValue = totalTime - timeLeft;
-
-      if (isCorrect === "Yes") {
-        score += 10;
-      } else {
-        score -= 10;
-      }
+      score += scoreChange;
 
       sessionStorage.setItem("cq_score", score);
 

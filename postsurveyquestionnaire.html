@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cortex Quest - Post-Survey</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=4" />
 </head>
 <body>
   <div class="scanlines"></div>
@@ -25,17 +25,17 @@
           <option value="">Select an option</option>
           <option>Very easy</option>
           <option>Easy</option>
-          <option>Moderate</option>
+          <option>Moderately difficult</option>
           <option>Difficult</option>
           <option>Very difficult</option>
         </select>
       </div>
 
       <div class="question-block">
-        <label for="pressure">2. How much pressure did you feel while making decisions?</label>
+        <label for="pressure">2. How much pressure did you feel while making decisions during the simulation?</label>
         <select id="pressure" name="pressure" required>
           <option value="">Select an option</option>
-          <option>None at all</option>
+          <option>No pressure at all</option>
           <option>Slight pressure</option>
           <option>Moderate pressure</option>
           <option>High pressure</option>
@@ -44,7 +44,7 @@
       </div>
 
       <div class="question-block">
-        <label for="realism">3. How realistic did the scenarios feel?</label>
+        <label for="realism">3. How realistic did the scenarios feel in relation to real digital messages, alerts, or online requests?</label>
         <select id="realism" name="realism" required>
           <option value="">Select an option</option>
           <option>Not realistic at all</option>
@@ -56,7 +56,7 @@
       </div>
 
       <div class="question-block">
-        <label for="engagement">4. How engaging did you find the simulation?</label>
+        <label for="engagement">4. How engaging did you find the simulation overall?</label>
         <select id="engagement" name="engagement" required>
           <option value="">Select an option</option>
           <option>Not engaging at all</option>
@@ -68,7 +68,7 @@
       </div>
 
       <div class="question-block">
-        <label for="confidence_after">5. After completing the simulation, how confident are you in identifying suspicious emails, messages, or prompts online?</label>
+        <label for="confidence_after">5. After completing the simulation, how confident are you in identifying phishing attempts or suspicious digital messages?</label>
         <select id="confidence_after" name="confidence_after" required>
           <option value="">Select an option</option>
           <option>Not confident at all</option>
@@ -80,7 +80,7 @@
       </div>
 
       <div class="question-block">
-        <label for="decision_pressure">6. After completing the simulation, how confident are you in making good decisions under online time pressure?</label>
+        <label for="decision_pressure">6. After completing the simulation, how confident are you in making accurate cyber-security decisions under time pressure?</label>
         <select id="decision_pressure" name="decision_pressure" required>
           <option value="">Select an option</option>
           <option>Not confident at all</option>
@@ -92,7 +92,7 @@
       </div>
 
       <div class="question-block">
-        <label for="urgency_influence">7. How much did urgency influence your decisions during the simulation?</label>
+        <label for="urgency_influence">7. To what extent did urgency or time pressure influence your decisions during the simulation?</label>
         <select id="urgency_influence" name="urgency_influence" required>
           <option value="">Select an option</option>
           <option>Not at all</option>
@@ -104,39 +104,18 @@
       </div>
 
       <div class="question-block">
-        <label for="authority_influence">8. How much did authority or official-sounding language influence your decisions?</label>
-        <select id="authority_influence" name="authority_influence" required>
-          <option value="">Select an option</option>
-          <option>Not at all</option>
-          <option>Slightly</option>
-          <option>Moderately</option>
-          <option>Strongly</option>
-          <option>Very strongly</option>
-        </select>
+        <label for="qual_post1">8. In your own words, which cues most influenced your decisions during the simulation, for example urgency, authority, reward, or consequence-based wording?</label>
+        <textarea class="matrix-textarea" id="qual_post1" name="qual_post1" placeholder="Type your response here..." required></textarea>
       </div>
 
       <div class="question-block">
-        <label for="loss_influence">9. How much did reward, loss, or consequence-based wording influence your decisions?</label>
-        <select id="loss_influence" name="loss_influence" required>
-          <option value="">Select an option</option>
-          <option>Not at all</option>
-          <option>Slightly</option>
-          <option>Moderately</option>
-          <option>Strongly</option>
-          <option>Very strongly</option>
-        </select>
+        <label for="qual_post2">9. In your own words, which scenario or decision did you find most difficult, and why?</label>
+        <textarea class="matrix-textarea" id="qual_post2" name="qual_post2" placeholder="Type your response here..." required></textarea>
       </div>
 
       <div class="question-block">
-        <label for="thinking_changed">10. Did this simulation change how you think about cyber threats and suspicious digital prompts?</label>
-        <select id="thinking_changed" name="thinking_changed" required>
-          <option value="">Select an option</option>
-          <option>Not at all</option>
-          <option>Slightly</option>
-          <option>Moderately</option>
-          <option>Strongly</option>
-          <option>Very strongly</option>
-        </select>
+        <label for="qual_post3">10. In your own words, has this simulation changed how you will respond to digital messages or requests in future? Please explain.</label>
+        <textarea class="matrix-textarea" id="qual_post3" name="qual_post3" placeholder="Type your response here..." required></textarea>
       </div>
 
       <div class="button-row">

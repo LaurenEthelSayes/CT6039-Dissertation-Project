@@ -19,6 +19,7 @@
     <p class="tagline">COMPLETE THIS BEFORE ENTERING THE SIMULATION</p>
 
     <form class="questionnaire-form" action="save_presurvey.php" method="POST">
+      
       <div class="question-block">
         <label for="age">1. What is your age group?</label>
         <select id="age" name="age" required>
@@ -35,19 +36,42 @@
       </div>
 
       <div class="question-block">
-        <label for="confidence">2. How confident would you say you are when using digital devices and online services?</label>
-        <select id="confidence" name="confidence" required>
+        <label for="gender">2. What is your gender?</label>
+        <select id="gender" name="gender" required>
           <option value="">Select an option</option>
-          <option>Not confident at all</option>
-          <option>Slightly confident</option>
-          <option>Moderately confident</option>
-          <option>Very confident</option>
-          <option>Extremely confident</option>
+          <option>Female</option>
+          <option>Male</option>
+          <option>Non-binary</option>
+          <option>Prefer not to say</option>
         </select>
       </div>
 
       <div class="question-block">
-        <label for="usage">3. How often do you use email, text messages, apps, or online accounts in everyday life?</label>
+        <label for="education">3. What is your highest level of education?</label>
+        <select id="education" name="education" required>
+          <option value="">Select an option</option>
+          <option>Secondary school or equivalent</option>
+          <option>College / Sixth Form</option>
+          <option>Undergraduate degree</option>
+          <option>Postgraduate degree</option>
+          <option>Other</option>
+          <option>Prefer not to say</option>
+        </select>
+      </div>
+
+      <div class="question-block">
+        <label for="training">4. Have you previously received any cyber-security training, education, or guidance?</label>
+        <select id="training" name="training" required>
+          <option value="">Select an option</option>
+          <option>Yes, formal training</option>
+          <option>Yes, informal guidance</option>
+          <option>No</option>
+          <option>Unsure</option>
+        </select>
+      </div>
+
+      <div class="question-block">
+        <label for="usage">5. How often do you use email, messaging apps, and online accounts in everyday life?</label>
         <select id="usage" name="usage" required>
           <option value="">Select an option</option>
           <option>Rarely</option>
@@ -59,7 +83,7 @@
       </div>
 
       <div class="question-block">
-        <label for="identify">4. How confident are you in identifying suspicious emails, messages, or prompts online?</label>
+        <label for="identify">6. How confident are you in identifying phishing attempts or suspicious digital messages?</label>
         <select id="identify" name="identify" required>
           <option value="">Select an option</option>
           <option>Not confident at all</option>
@@ -71,74 +95,23 @@
       </div>
 
       <div class="question-block">
-        <label for="training">5. Have you ever received any cyber-security awareness training or guidance?</label>
-        <select id="training" name="training" required>
-          <option value="">Select an option</option>
-          <option>Yes, formal training</option>
-          <option>Yes, informal guidance</option>
-          <option>No</option>
-          <option>Unsure</option>
-        </select>
+        <label for="qual1">7. In your own words, what usually makes a digital message or request seem suspicious to you?</label>
+        <textarea id="qual1" name="qual1" placeholder="Type your response here..." required></textarea>
       </div>
 
       <div class="question-block">
-        <label for="pausecheck">6. How often do you pause and check whether a message, alert, or prompt might be suspicious before responding?</label>
-        <select id="pausecheck" name="pausecheck" required>
-          <option value="">Select an option</option>
-          <option>Never</option>
-          <option>Rarely</option>
-          <option>Sometimes</option>
-          <option>Often</option>
-          <option>Always</option>
-        </select>
+        <label for="qual2">8. In your own words, why do you think people make unsafe decisions online?</label>
+        <textarea id="qual2" name="qual2" placeholder="Type your response here..." required></textarea>
       </div>
 
       <div class="question-block">
-        <label for="urgency">7. How likely are you to trust a message if it appears urgent or time-sensitive?</label>
-        <select id="urgency" name="urgency" required>
-          <option value="">Select an option</option>
-          <option>Very unlikely</option>
-          <option>Unlikely</option>
-          <option>Neutral</option>
-          <option>Likely</option>
-          <option>Very likely</option>
-        </select>
+        <label for="qual3">9. In your own words, what factors would make you trust a message, alert, or online request?</label>
+        <textarea id="qual3" name="qual3" placeholder="Type your response here..." required></textarea>
       </div>
 
       <div class="question-block">
-        <label for="authority">8. How likely are you to trust a message if it appears to come from an authority figure, company, or service you recognise?</label>
-        <select id="authority" name="authority" required>
-          <option value="">Select an option</option>
-          <option>Very unlikely</option>
-          <option>Unlikely</option>
-          <option>Neutral</option>
-          <option>Likely</option>
-          <option>Very likely</option>
-        </select>
-      </div>
-
-      <div class="question-block">
-        <label for="pressure">9. How confident are you in making good decisions when faced with pressure or limited time online?</label>
-        <select id="pressure" name="pressure" required>
-          <option value="">Select an option</option>
-          <option>Not confident at all</option>
-          <option>Slightly confident</option>
-          <option>Moderately confident</option>
-          <option>Very confident</option>
-          <option>Extremely confident</option>
-        </select>
-      </div>
-
-      <div class="question-block">
-        <label for="performance">10. Before taking part, how well do you think you will perform in this simulation?</label>
-        <select id="performance" name="performance" required>
-          <option value="">Select an option</option>
-          <option>Very poorly</option>
-          <option>Poorly</option>
-          <option>Average</option>
-          <option>Well</option>
-          <option>Very well</option>
-        </select>
+        <label for="qual4">10. In your own words, how do you usually decide whether to respond to or ignore a digital message?</label>
+        <textarea id="qual4" name="qual4" placeholder="Type your response here..." required></textarea>
       </div>
 
       <div class="button-row">

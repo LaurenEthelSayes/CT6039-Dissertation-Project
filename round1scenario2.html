@@ -4,16 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cortex Quest - Round 1 Scenario 2</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=6" />
 </head>
 <body>
   <div class="scanlines"></div>
 
   <main class="panel">
     <div class="game-topbar">
-      <div class="status-pill">ROUND 1 OF 3</div>
+      <div class="status-pill">ROUND 1 OF 2</div>
       <div class="status-pill">SCENARIO 2 OF 6</div>
-      <div class="status-pill">THREAT LEVEL: LOW</div>
+      <div class="status-pill">THREAT LEVEL: HIGH</div>
       <div class="status-pill">SCORE: <span id="scoreDisplay">0</span></div>
     </div>
 
@@ -33,8 +33,8 @@
     <div class="timer-section timer-section-loud">
       <div class="timer-main-display" id="timerText">18s</div>
       <div class="timer-label-row">
-        <span>DECISION TIMER</span>
-        <span id="timerStatus">STABLE</span>
+        <span>DECISION WINDOW</span>
+        <span id="timerStatus">HIGH LOAD</span>
       </div>
       <div class="timer-bar">
         <div class="timer-fill" id="timerFill"></div>
@@ -45,31 +45,30 @@
       <div class="scenario-header">
         <div>
           <p class="scenario-from">FROM: rewards@member-benefits-mail.com</p>
-          <h2 class="scenario-title">You’ve Unlocked a Bonus Reward</h2>
+          <h2 class="scenario-title">Bonus Reward Available</h2>
         </div>
         <div class="scenario-badge">LIMITED</div>
       </div>
 
       <p class="scenario-message">
-        Congratulations. You have been selected as one of today’s active users and are now eligible
-        to claim a bonus member reward. This reward window closes shortly and may not be reissued.
+        Congratulations. You have been selected as one of today’s active users and may now
+        claim a bonus member reward. This reward window is limited and may expire if no action
+        is taken immediately.
       </p>
-
-      <button class="fake-link-btn" type="button">CLAIM REWARD</button>
 
       <p class="scenario-note">
         Offer expires soon. Prompt may disappear if no action is taken.
       </p>
     </div>
 
-    <div class="action-grid">
-      <button class="action-btn" type="button" onclick="submitScenario('Proceed', 'No', 'reward')">PROCEED</button>
-      <button class="action-btn" type="button" onclick="submitScenario('Cancel', 'Yes', 'reward')">CANCEL</button>
-      <button class="action-btn" type="button" onclick="submitScenario('Report', 'Yes', 'reward')">REPORT</button>
-      <button class="action-btn" type="button" onclick="submitScenario('Investigate', 'Yes', 'reward')">INVESTIGATE</button>
-    </div>
+    <p class="warning-text" id="scenarioMessage">
+      Choose your first response under pressure.
+    </p>
 
-    <p class="warning-text" id="scenarioMessage"></p>
+    <div class="action-grid">
+      <button class="action-btn" type="button" onclick="submitScenario('Claim Reward Now', 'No', 'reward')">CLAIM REWARD NOW</button>
+      <button class="action-btn" type="button" onclick="submitScenario('Report As Suspicious And Delete', 'Yes', 'reward')">REPORT AS SUSPICIOUS AND DELETE</button>
+    </div>
 
     <form id="scenarioForm" action="save_scenario.php" method="POST" style="display: none;">
       <input type="hidden" name="round_number" value="1">
@@ -94,6 +93,7 @@
       const timerText = document.getElementById("timerText");
       const timerFill = document.getElementById("timerFill");
       const timerStatus = document.getElementById("timerStatus");
+      const scenarioMessage = document.getElementById("scenarioMessage");
 
       timerText.textContent = timeLeft + "s";
       timerFill.style.width = "100%";
@@ -108,6 +108,7 @@
         if (timeLeft <= 9) {
           timerStatus.textContent = "ELEVATED";
           timerText.style.color = "#b6ffcf";
+          scenarioMessage.textContent = "Reward availability may expire. Make a decision.";
         }
 
         if (timeLeft <= 5) {
@@ -115,6 +116,7 @@
           timerText.style.color = "#ffffff";
           timerText.style.textShadow = "0 0 10px rgba(255,255,255,0.95), 0 0 22px rgba(0,255,136,0.55)";
           timerFill.style.background = "#8affc1";
+          scenarioMessage.textContent = "Limited reward window. Immediate response required.";
         }
 
         if (timeLeft <= 0) {
