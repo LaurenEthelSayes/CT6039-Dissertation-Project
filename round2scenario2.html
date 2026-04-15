@@ -12,7 +12,7 @@
   <main class="panel">
     <div class="game-topbar">
       <div class="status-pill">ROUND 2 OF 2</div>
-      <div class="status-pill">SCENARIO 2 OF 3</div>
+      <div class="status-pill">SCENARIO 2 OF 2</div>
       <div class="status-pill">THREAT LEVEL: HIGH</div>
       <div class="status-pill">SCORE: <span id="scoreDisplay">0</span></div>
     </div>
@@ -44,20 +44,19 @@
     <div class="scenario-card">
       <div class="scenario-header">
         <div>
-          <p class="scenario-from">FROM: delivery-support@parcel-update-centre.com</p>
-          <h2 class="scenario-title">Delivery Delayed Due to Payment Issue</h2>
+          <p class="scenario-from">FROM: notifications@royalmail-shipping.co.uk</p>
+          <h2 class="scenario-title">Delivery Fee Confirmation Needed</h2>
         </div>
         <div class="scenario-badge">ACTION</div>
       </div>
 
       <p class="scenario-message">
-        Your parcel is currently on hold due to an unresolved delivery processing charge.
-        A small payment confirmation is required before dispatch can continue. Failure to
-        respond may result in return to sender.
+        A parcel addressed to you could not be dispatched due to an outstanding delivery fee.
+        To avoid delay, please confirm the delivery charge and review your shipping details.
       </p>
 
       <p class="scenario-note">
-        Response required soon to avoid cancellation of scheduled delivery.
+        If no action is taken today, delivery may be rescheduled automatically.
       </p>
     </div>
 
@@ -66,8 +65,8 @@
     </p>
 
     <div class="action-grid">
-      <button class="action-btn" type="button" onclick="submitScenario('Resolve Delivery Now', 'No', 'urgency_consequence', -10)">RESOLVE DELIVERY NOW</button>
-      <button class="action-btn" type="button" onclick="submitScenario('Report As Suspicious And Delete', 'Yes', 'urgency_consequence', 10)">REPORT AS SUSPICIOUS AND DELETE</button>
+      <button class="action-btn" type="button" onclick="submitScenario('Pay Delivery Fee Now', 'No', 'urgency_consequence', -10)">PAY DELIVERY FEE NOW</button>
+      <button class="action-btn" type="button" onclick="submitScenario('Delete Message And Check Courier Account Separately', 'Yes', 'urgency_consequence', 10)">DELETE MESSAGE AND CHECK COURIER ACCOUNT</button>
       <button class="action-btn" type="button" onclick="submitScenario('Ignore For Now / Unsure', 'No', 'urgency_consequence', -10)">IGNORE FOR NOW / UNSURE</button>
     </div>
 
@@ -109,7 +108,7 @@
         if (timeLeft <= 7) {
           timerStatus.textContent = "ELEVATED";
           timerText.style.color = "#b6ffcf";
-          scenarioMessage.textContent = "Delivery may be cancelled. Make a decision.";
+          scenarioMessage.textContent = "Delivery may be rescheduled. Make a decision.";
         }
 
         if (timeLeft <= 4) {

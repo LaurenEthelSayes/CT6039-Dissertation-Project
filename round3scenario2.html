@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cortex Quest - Scenario 3 Round 2</title>
+  <title>Cortex Quest - Round 3 Scenario 2</title>
   <link rel="stylesheet" href="style.css?v=10" />
 </head>
 <body>
@@ -11,14 +11,14 @@
 
   <main class="panel">
     <div class="game-topbar">
-      <div class="status-pill">ROUND 2 OF 2</div>
-      <div class="status-pill">SCENARIO 3 OF 3</div>
+      <div class="status-pill">ROUND 3 OF 3</div>
+      <div class="status-pill">SCENARIO 6 OF 6</div>
       <div class="status-pill">THREAT LEVEL: CRITICAL</div>
       <div class="status-pill">SCORE: <span id="scoreDisplay">0</span></div>
     </div>
 
-    <h1>ROUND 2</h1>
-    <p class="tagline">SCENARIO 3: ACCOUNT RECOVERY ESCALATION</p>
+    <h1>ROUND 3</h1>
+    <p class="tagline">SCENARIO 6: SHARED DOCUMENT ACCESS REQUEST</p>
 
     <div class="progress-section">
       <div class="progress-label-row">
@@ -44,20 +44,20 @@
     <div class="scenario-card">
       <div class="scenario-header">
         <div>
-          <p class="scenario-from">FROM: account-recovery@secure-userrestore.com</p>
-          <h2 class="scenario-title">Recovery Escalation in Progress</h2>
+          <p class="scenario-from">FROM: notifications@sharepoint-document.net</p>
+          <h2 class="scenario-title">A File Has Been Shared With You</h2>
         </div>
-        <div class="scenario-badge">FINAL NOTICE</div>
+        <div class="scenario-badge">SHARED</div>
       </div>
 
       <p class="scenario-message">
-        A recovery request linked to your account is currently being processed. Immediate confirmation
-        is required to prevent permanent session loss, interruption of access, and suspension of stored
-        account activity. This action cannot be reversed once recovery is finalised.
+        A document has been shared with your account and is awaiting review. Access is available through
+        your linked workspace session. If the document is not reviewed soon, sharing permissions may need
+        to be refreshed before access can continue.
       </p>
 
       <p class="scenario-note">
-        This request appears linked to account recovery, loss of access, and urgent account action.
+        Shared items sometimes expire when collaboration settings are updated or external access is restricted.
       </p>
     </div>
 
@@ -66,15 +66,15 @@
     </p>
 
     <div class="action-grid">
-      <button class="action-btn" type="button" onclick="submitScenario('Confirm Recovery Now', 'No', 'authority_urgency_loss', -10)">CONFIRM RECOVERY NOW</button>
-      <button class="action-btn" type="button" onclick="submitScenario('Delay And Review Later', 'No', 'authority_urgency_loss', -5)">DELAY AND REVIEW LATER</button>
-      <button class="action-btn" type="button" onclick="submitScenario('Report As Suspicious', 'Yes', 'authority_urgency_loss', 10)">REPORT AS SUSPICIOUS</button>
-      <button class="action-btn" type="button" onclick="submitScenario('Ignore For Now / Unsure', 'No', 'authority_urgency_loss', -10)">IGNORE FOR NOW / UNSURE</button>
+      <button class="action-btn" type="button" onclick="submitScenario('Open Shared Document', 'No', 'trust_urgency_context', -10)">OPEN SHARED DOCUMENT</button>
+      <button class="action-btn" type="button" onclick="submitScenario('Delay And Review Later', 'No', 'trust_urgency_context', -5)">DELAY AND REVIEW LATER</button>
+      <button class="action-btn" type="button" onclick="submitScenario('Report As Suspicious', 'Yes', 'trust_urgency_context', 10)">REPORT AS SUSPICIOUS</button>
+      <button class="action-btn" type="button" onclick="submitScenario('Ignore For Now / Unsure', 'No', 'trust_urgency_context', -10)">IGNORE FOR NOW / UNSURE</button>
     </div>
 
     <form id="scenarioForm" action="save_scenario.php" method="POST" style="display: none;">
-      <input type="hidden" name="round_number" value="2">
-      <input type="hidden" name="scenario_number" value="3">
+      <input type="hidden" name="round_number" value="3">
+      <input type="hidden" name="scenario_number" value="6">
       <input type="hidden" name="cue_type" id="cueType">
       <input type="hidden" name="user_choice" id="userChoice">
       <input type="hidden" name="is_correct" id="isCorrect">
@@ -110,7 +110,7 @@
         if (timeLeft <= 8) {
           timerStatus.textContent = "ELEVATED";
           timerText.style.color = "#b6ffcf";
-          scenarioMessage.textContent = "Account recovery pressure increasing. Make a decision.";
+          scenarioMessage.textContent = "Shared access may be affected. Make a decision.";
         }
 
         if (timeLeft <= 4) {
@@ -118,12 +118,12 @@
           timerText.style.color = "#ffffff";
           timerText.style.textShadow = "0 0 10px rgba(255,255,255,0.95), 0 0 22px rgba(0,255,136,0.55)";
           timerFill.style.background = "#8affc1";
-          scenarioMessage.textContent = "Final recovery warning. Immediate response required.";
+          scenarioMessage.textContent = "Shared item review pressure increasing.";
         }
 
         if (timeLeft <= 0) {
           clearInterval(timerInterval);
-          submitScenario("No Response", "No", "authority_urgency_loss", -10);
+          submitScenario("No Response", "No", "trust_urgency_context", -10);
         }
       }, 1000);
     }
